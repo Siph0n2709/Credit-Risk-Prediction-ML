@@ -77,26 +77,26 @@ This phase focused on transforming the raw data into a clean, numerical format s
 Two models were trained and compared to assess performance:
 
 * **Baseline: Logistic Regression Classifier**
-    * **ROC AUC:** `[LR_ROC_AUC_HERE]`
-    * **Recall (Default Class):** `[LR_RECALL_HERE]`
-    * **Precision (Default Class):** `[LR_PRECISION_HERE]`
+    * **ROC AUC:** 
+    * **Recall (Default Class):** 
+    * **Precision (Default Class):** 
     * *Initial Insight:* This model provided a solid baseline, demonstrating good recall but lower precision for the default class, indicating a trade-off.
 
 * **Main Model: XGBoost Classifier**
     * **Initial Run (Default Threshold):**
-        * **ROC AUC:** `[XGBOOST_INITIAL_ROC_AUC_HERE]`
-        * **Recall (Default Class):** `[XGBOOST_INITIAL_RECALL_HERE]`
-        * **Precision (Default Class):** `[XGBOOST_INITIAL_PRECISION_HERE]`
+        * **ROC AUC:** 
+        * **Recall (Default Class):** 
+        * **Precision (Default Class):** 
         * *Initial Insight:* While achieving a higher overall AUC and improved precision, the default threshold resulted in significantly lower recall for the minority class.
 
     * **Threshold Optimization (Business-Driven Tuning):**
         * Recognizing that missing a default (False Negative) can be highly costly in credit risk, I analyzed the Precision-Recall curve to identify an "optimal" probability threshold. This allowed for a strategic balance between catching more defaults and minimizing false rejections.
-        * **Chosen Optimal Threshold:** `[YOUR_CHOSEN_THRESHOLD_HERE]`
+        * **Chosen Optimal Threshold:** 
         * **Performance with Optimized Threshold:**
-            * **ROC AUC:** `[XGBOOST_OPTIMIZED_ROC_AUC_HERE]` (consistent with initial AUC)
-            * **Recall (Default Class):** `[XGBOOST_OPTIMIZED_RECALL_HERE]` (significantly improved)
-            * **Precision (Default Class):** `[XGBOOST_OPTIMIZED_PRECISION_HERE]` (adjusted to balance recall)
-        * **Business Impact:** This optimized model is now capable of identifying **[XGBOOST_OPTIMIZED_RECALL_HERE]% of actual defaulting loans**, while maintaining a precision of **[XGBOOST_OPTIMIZED_PRECISION_HERE]%** (meaning **[XGBOOST_OPTIMIZED_PRECISION_HERE]%** of its default predictions are correct). This directly contributes to more effective loss mitigation for lenders.
+            * **ROC AUC:**  (consistent with initial AUC)
+            * **Recall (Default Class):**  (significantly improved)
+            * **Precision (Default Class):**  (adjusted to balance recall)
+        * **Business Impact:** This optimized model is now capable of identifying **66% of actual defaulting loans**, while maintaining a precision of **73%** (meaning **73%** of its default predictions are correct). This directly contributes to more effective loss mitigation for lenders.
 
 
 
@@ -179,3 +179,4 @@ Here's how the project may be replicated:
 
 
 Thanks for checking out the project! Feel free to connect or reach out if you have questions.
+

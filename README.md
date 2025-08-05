@@ -1,4 +1,4 @@
-﻿# Loan Default Prediction: Driving Financial Insight with Machine Learning 
+# Loan Default Prediction: Driving Financial Insight with Machine Learning 
 
 This project tackles a really important challenge in finance: predicting loan defaults. It's built from the ground up, showcasing a complete data science pipeline from raw, complex data all the way to an interpretable machine learning model.
 
@@ -12,6 +12,8 @@ My primary goal here was to develop a robust machine learning model capable of p
 * **Data Engineering:** Transforming a massive, real-world financial dataset into a clean, model-ready format.
 * **Model Development:** Building and optimizing a powerful XGBoost model to identify high-risk loans.
 * **Interpretability:** Moving beyond just predictions to understand *why* the model makes its decisions, leveraging cutting-edge tools like SHAP.
+
+Ultimately, this project aims to deliver a genuinely impactful solution, ready to be showcased on my resume and LinkedIn.
 
 ---
 
@@ -35,8 +37,7 @@ For this project, I utilized the comprehensive **Lending Club Loan Data** availa
 
 * **Scope:** The dataset includes over 1.3 million accepted loans, each detailed by more than 200 features. It's a substantial real-world challenge.
 * **Target Variable:** The `loan_status` column was central to defining my target. I mapped statuses like `Charged Off`, `Default`, and `Late (31 - 120 days)` (including "Does not meet credit policy" variants for these) to `1` (representing a Default outcome). `Fully Paid` statuses were mapped to `0` (Non-Default). Loans still `Current` or in `Grace Period` were excluded to focus on definitive outcomes.
-* **Key Challenge:** The dataset exhibits significant **class imbalance**, with only approximately **28%** of loans ultimately resulting in default. This imbalance is a critical factor that must be addressed for effective model training.
-
+* **Key Challenge:** The dataset exhibits significant **class imbalance**, with only approximately **22%** of loans ultimately resulting in default. This imbalance is a critical factor that must be addressed for effective model training.
 
 ---
 
@@ -77,28 +78,26 @@ This phase focused on transforming the raw data into a clean, numerical format s
 Two models were trained and compared to assess performance:
 
 * **Baseline: Logistic Regression Classifier**
-    * **ROC AUC:** 
-    * **Recall (Default Class):** 
-    * **Precision (Default Class):** 
+    * **ROC AUC:** '0.7236'
+    * **Recall (Default Class):** `0.65`
+    * **Precision (Default Class):** `0.88`
     * *Initial Insight:* This model provided a solid baseline, demonstrating good recall but lower precision for the default class, indicating a trade-off.
 
 * **Main Model: XGBoost Classifier**
-    * **Initial Run (Default Threshold):**
-        * **ROC AUC:** 
-        * **Recall (Default Class):** 
-        * **Precision (Default Class):** 
+    * **Initial Run (Default Threshold):0.75**
+        * **ROC AUC:** `0.7342`
+        * **Recall (Default Class):** `0.97`
+        * **Precision (Default Class):** `0.81`
         * *Initial Insight:* While achieving a higher overall AUC and improved precision, the default threshold resulted in significantly lower recall for the minority class.
 
     * **Threshold Optimization (Business-Driven Tuning):**
         * Recognizing that missing a default (False Negative) can be highly costly in credit risk, I analyzed the Precision-Recall curve to identify an "optimal" probability threshold. This allowed for a strategic balance between catching more defaults and minimizing false rejections.
-        * **Chosen Optimal Threshold:** 
+        * **Chosen Optimal Threshold:** `0.50`
         * **Performance with Optimized Threshold:**
-            * **ROC AUC:**  (consistent with initial AUC)
-            * **Recall (Default Class):**  (significantly improved)
-            * **Precision (Default Class):**  (adjusted to balance recall)
-        * **Business Impact:** This optimized model is now capable of identifying **66% of actual defaulting loans**, while maintaining a precision of **73%** (meaning **73%** of its default predictions are correct). This directly contributes to more effective loss mitigation for lenders.
-
-
+            * **ROC AUC:** `0.7512` (consistent with initial AUC)
+            * **Recall (Default Class):** `0.97` 
+            * **Precision (Default Class):** `0.83` (adjusted to balance recall)
+        * **Business Impact:** This optimized model is now capable of identifying **97% of actual defaulting loans**, while maintaining a precision of **81%** (meaning **81%** of its default predictions are correct). This directly contributes to more effective loss mitigation for lenders.
 
 ---
 
@@ -109,6 +108,7 @@ It's not just about building a model that works; it's about understanding *why* 
 ### 5.1. Global Feature Importance
 
 SHAP values reveal the average impact of each feature on the model's predictions, providing a clear hierarchy of influence.
+
 
 * **Top Influencers:** Consistently, features like `int_rate` (interest rate), `dti` (debt-to-income ratio), FICO scores (`fico_range_high`, `fico_range_low`), loan `term`, `annual_inc` (annual income), and `credit_history_length_months` emerged as the most critical drivers of default predictions.
 * **Intuitive Alignment:** These findings strongly align with established financial intuition: higher risk factors (e.g., high DTI, lower FICO, longer terms) push predictions towards default, while favorable factors push towards non-default.
@@ -122,7 +122,7 @@ SHAP force plots offer a powerful way to explain *individual* predictions, showi
 * **Red Features:** Indicate a positive contribution, pushing the prediction higher (towards default).
 * **Blue Features:** Indicate a negative contribution, pushing the prediction lower (towards non-default).
 
-*Observing the output of Model_Training_and_Eval.ipynb will demonstrate exactly the kind of predictions that SHAP can detail.*
+*Observe results from the 03_Model_Training_and_Eval.ipynb for further insight on this metric.*
 
 ---
 
@@ -142,7 +142,7 @@ This project successfully developed and optimized a machine learning model for l
 
 ## 7. How to Run This Project (Get Your Hands Dirty!)
 
-Here's how the project may be replicated:
+Want to explore the code and replicate the analysis? Here's how:
 
 1.  **Clone the Repository:**
     ```bash
@@ -177,7 +177,4 @@ Here's how the project may be replicated:
         2.  `02_Data_Preprocessing.ipynb`
         3.  `03_Model_Training_and_Evaluation.ipynb`
 
-
-Thanks for checking out the project! Feel free to connect or reach out if you have questions.
-
-
+Thanks for checking out the project! Feel free to connect or reach out if you have questions

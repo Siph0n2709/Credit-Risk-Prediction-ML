@@ -35,7 +35,7 @@ For this project, I utilized the comprehensive **Lending Club Loan Data** availa
 
 * **Scope:** The dataset includes over 1.3 million accepted loans, each detailed by more than 200 features. It's a substantial real-world challenge.
 * **Target Variable:** The `loan_status` column was central to defining my target. I mapped statuses like `Charged Off`, `Default`, and `Late (31 - 120 days)` (including "Does not meet credit policy" variants for these) to `1` (representing a Default outcome). `Fully Paid` statuses were mapped to `0` (Non-Default). Loans still `Current` or in `Grace Period` were excluded to focus on definitive outcomes.
-* **Key Challenge:** The dataset exhibits significant **class imbalance**, with only approximately **[YOUR_DEFAULT_RATE_PERCENTAGE]%** of loans ultimately resulting in default. This imbalance is a critical factor that must be addressed for effective model training.
+* **Key Challenge:** The dataset exhibits significant **class imbalance**, with only approximately **28%** of loans ultimately resulting in default. This imbalance is a critical factor that must be addressed for effective model training.
 
 
 ---
@@ -179,4 +179,5 @@ Here's how the project may be replicated:
 
 
 Thanks for checking out the project! Feel free to connect or reach out if you have questions.
+
 

@@ -140,7 +140,7 @@ This project successfully developed and optimized a machine learning model for l
 
 ---
 
-## 7. How to Run This Project (Get Your Hands Dirty!)
+## 7. How to Run This Project
 
 Want to explore the code and replicate the analysis? Here's how:
 
